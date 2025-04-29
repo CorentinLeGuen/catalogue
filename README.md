@@ -24,3 +24,11 @@ mvn clean verify
 ```
 
 -> Le rapport de couverture de tests est disponible [ici](/target/site/jacoco/index.html).
+
+## TODO
+
+- [ ] Retravailler les logs (couverture à ~92% actuellement)
+- [ ] SonarQube: Changer *@MockBean* des tests (déprécié depuis la version 3.4.0)
+- [ ] Tester hedgecases
+- [ ] Ajouter des loggers + Prometheus + Grafana
+- [ ] Ajouter des jetons JWT pour une authentification stateless
