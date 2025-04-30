@@ -18,7 +18,7 @@ import java.util.List;
 public class BookDTO {
     @NotBlank(message = "ISBN is mandatory")
     @Pattern(
-            regexp = "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$",
+            regexp = "^\\w{10}(\\w{3})?$",
             message = "ISBN format should be ISBN-10 or ISBN-13 format"
     )
     @UniqueISBN
