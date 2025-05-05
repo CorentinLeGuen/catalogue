@@ -10,6 +10,8 @@
 
 ## Installation
 
+> Changez la config [WebConfig](src/main/java/com/librairie/catalogue/config/WebConfig.java) pour votre réseau.
+
 🐳 Conteneurs docker détachés (option -d)
 ```
 docker-compose up --build -d
