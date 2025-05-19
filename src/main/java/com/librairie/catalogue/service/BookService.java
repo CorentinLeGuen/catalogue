@@ -26,15 +26,18 @@ public class BookService {
         this.bookMapper = bookMapper;
     }
 
+    @Transactional(readOnly = true)
     public List<BookDTO> getAllBooks() {
         return bookMapper.booksToBookDTOs(bookRepository.findAll());
     }
 
+    @Transactional(readOnly = true)
     public BookDTO getBookByIsbn(String isbn) {
         return bookMapper.bookToBookDTO(bookRepository.findByIsbn(isbn)
                 .orElseThrow(() -> new ResourceNotFoundException("Unable to find the book with ISBN: " + isbn)));
     }
 
+    @Transactional(readOnly = true)
     public List<BookDTO> searchBooks(String title, String author) {
         if (title != null && !title.isBlank()) {
             return bookMapper.booksToBookDTOs(bookRepository.findByTitleContainingIgnoreCase(title));
@@ -45,6 +48,7 @@ public class BookService {
         return bookMapper.booksToBookDTOs(bookRepository.findAll());
     }
 
+    @Transactional
     public BookDTO createBook(BookDTO bookDTO) {
         Book book = bookMapper.bookDTOToBook(bookDTO);
         if (bookDTO.getAuthors() != null) {
@@ -59,6 +63,7 @@ public class BookService {
         return bookMapper.bookToBookDTO(createdBook);
     }
 
+    @Transactional
     public BookDTO updateBook(BookDTO bookDTO) {
         Book existingBook = bookRepository.findByIsbn(bookDTO.getIsbn())
                 .orElseThrow(() -> new ResourceNotFoundException("Book not found with ISBN: " + bookDTO.getIsbn()));
@@ -81,6 +86,7 @@ public class BookService {
         return bookMapper.bookToBookDTO(updatedBook);
     }
 
+    @Transactional
     public void deleteBook(String isbn) {
         if (!bookRepository.existsByIsbn(isbn)) {
             throw new ResourceNotFoundException("Book not found with ISBN: " + isbn);
